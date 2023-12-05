@@ -1,0 +1,41 @@
+﻿@model Brightflow_mvc_opdracht.Models.User
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "User", FormMethod.Post)) {@*zorgen dat het formuliertje naar de controller kan*@
+<fieldset>
+    <legend>Login</legend>
+
+    @Html.AntiForgeryToken() @*security*@
+    @Html.ValidationSummary(true)
+
+    <dl class="dl-horizontal">
+        <dt>
+            Email
+        </dt>
+        <dd>
+            @Html.TextBoxFor(u => u.Mail)
+            @Html.ValidationMessageFor(u => u.Mail)
+        </dd>
+
+        <dt>
+            Wachtwoord
+        </dt>
+        <dd>
+            @Html.TextBoxFor(u => u.Wachtwoord)
+            @Html.ValidationMessageFor(u => u.Wachtwoord)
+        </dd>
+
+        <dd>
+            <input type="submit" value="Login" /> @*de knoppen login en terug*@
+            @Html.ActionLink("Terug", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </dd>
+    </dl>
+</fieldset>
+}
+

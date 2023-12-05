@@ -1,0 +1,64 @@
+﻿@model Brightflow_mvc_opdracht.Models.User
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register</h2>
+
+@using (Html.BeginForm("Register", "User", FormMethod.Post)) { @*om alle data door te kunnen sturen naar de controller*@
+    <fieldset>
+
+        @Html.AntiForgeryToken() @*security*@
+        @Html.ValidationSummary(true)
+        
+        <dl class="dl-horizontal"> @*de data nodig om een user aan te maken*@
+            <dt>
+                Naam
+            </dt><dd>
+                @Html.TextBoxFor(u => u.Naam)
+                @Html.ValidationMessageFor(u => u.Naam)
+            </dd>
+            <dt>
+                Tussenvoegsel
+            </dt><dd>
+                @Html.TextBoxFor(u => u.Tussenvoegsel)
+                @Html.ValidationMessageFor(u => u.Tussenvoegsel)
+            </dd>
+            @*in de toekomst wordt dit alleen achternaam, want in andere applicaties ben ik al gewend om dit bij de achternaam te zetten*@
+            <dt>
+                achternaam
+            </dt><dd>
+                @Html.TextBoxFor(u => u.Achternaam)
+                @Html.ValidationMessageFor(u => u.Achternaam)
+            </dd>
+            
+            <dt>
+                Email
+            </dt><dd>
+                @Html.TextBoxFor(u => u.Mail)
+                @Html.ValidationMessageFor(u => u.Mail)
+            </dd>
+
+             <dt>
+                Telefoonnummer
+            </dt><dd>
+                @Html.TextBoxFor(u => u.Phone)
+                @Html.ValidationMessageFor(u => u.Phone)
+            </dd>
+
+            <dt>
+                Wachtwoord
+            </dt><dd>
+                @Html.TextBoxFor(u => u.Wachtwoord)
+                @Html.ValidationMessageFor(u => u.Wachtwoord)
+            </dd>
+
+            <dd>
+                <input type="submit" value="Register" /> @*de knoppen om in te loggen en om terug te gaan*@
+                @Html.ActionLink("Terug", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </dd>
+        </dl>
+    </fieldset>
+}

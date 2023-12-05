@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Brightflow_mvc_opdracht.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Users</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    
+    @using (Html.BeginForm("Index", "User"))
+    { @* een formulietje om het door te sturen naar de controller *@
+        <p> User: @Html.TextBox("SearchString") <input type="submit" value="Filter" /></p>
+        @Html.Raw(ViewBag.ErrorMessage)
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Naam)
+        </th><th>
+            @Html.DisplayNameFor(model => model.Tussenvoegsel)
+        </th><th>
+            @Html.DisplayNameFor(model => model.Achternaam)
+        </th><th>
+            @Html.DisplayNameFor(model => model.Mail)
+        </th><th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th><th>
+            @Html.DisplayNameFor(model => model.Role)
+        </th><th>
+            @Html.DisplayNameFor(model => model.ProfilePicture)
+        </th><th></th> @*de laatste blijft leeg omdat dit voor de crud acties is*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naam)
+        </td><td>
+            @Html.DisplayFor(modelItem => item.Tussenvoegsel)
+        </td><td>
+            @Html.DisplayFor(modelItem => item.Achternaam)
+        </td><td>
+            @Html.DisplayFor(modelItem => item.Mail)
+        </td><td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td><td>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td><td>
+            @Html.DisplayFor(modelItem => item.ProfilePicture)
+        </td><td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
+        </td>
+    </tr>
+}
+
+</table>

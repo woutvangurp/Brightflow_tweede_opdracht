@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Brightflow_mvc_opdracht.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Producten</h2>
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    
+    @using (Html.BeginForm("Index", "Product"))
+    {
+        <p> product: @Html.TextBox("SearchString") <input type="submit" value="Filter" /></p>
+        @Html.Raw(ViewBag.ErrorMessage)
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product1)
+        </th><th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th><th>
+            @Html.DisplayNameFor(model => model.Details)
+        </th><th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th><th></th> @*een leeg stukje header voor de crud acties*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product1)
+        </td><td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td><td>
+            @Html.DisplayFor(modelItem => item.Details)
+        </td><td>
+            @Html.DisplayFor(modelItem => item.Stock)
+        </td><td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
+        </td>
+    </tr>
+}
+
+</table>

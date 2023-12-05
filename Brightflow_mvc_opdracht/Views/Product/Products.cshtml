@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Brightflow_mvc_opdracht.Models.Product>
+
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    @*alleen voor de users want die geen crud acties mogen doen*@
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product1)
+        </th><th>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </th><th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th><th>
+            @Html.DisplayNameFor(model => model.Details)
+        </th><th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product1)
+        </td><td>
+            @Html.DisplayFor(modelItem => item.ImagePath)
+        </td><td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td><td>
+            @Html.DisplayFor(modelItem => item.Details)
+        </td><td>
+            @Html.DisplayFor(modelItem => item.Stock)
+        </td>
+    </tr>
+}
+
+</table>
